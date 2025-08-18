@@ -6,6 +6,41 @@ class Solution {
         return nums[nums.length - k];
     }
 }
+// 这是基于快排不减枝的写法
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        int n = nums.length;
+        quickSort(nums, 0, n - 1);
+        for (int x : nums) {
+            System.out.println(x);
+        }
+        return nums[n - k];
+    }
+
+    private void quickSort(int[] nums, int l, int r) {
+        if (l == r)
+            return;
+        int x = nums[l];
+        int i = l, j = r;
+        while (i <= j) {
+            while (i <= j && nums[i] < x) i++;
+            while (i <= j && nums[j] > x) j--;
+            if (i >= j) {//如果写的是if(i<j)进行交换和指针移动，i==j和nums[i]==x的时候会死循环
+                break;
+            }
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+            i++;
+            j--;
+
+        }
+        quickSort(nums, l, j);
+        quickSort(nums, j + 1, r);
+    }
+}
+
+
 //官方题解的快速选择排序，就是对快排进行剪枝，只是将答案所在的那部分排序就可。因为每次扫描之后j的位置就确定了。
 class Solution {
     int quickselect(int[] nums, int l, int r, int k) {
