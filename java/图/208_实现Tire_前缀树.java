@@ -2,7 +2,7 @@
 //所以，构建一个前缀树。每个节点存储一个26个字母的子节点，每个节点的end表示是否是一个单词的结束。
 //insert的时候，遍历要插入的字符串，构建树节点，最后一个节点的end为true。这样可以方便区分是前缀匹配还是完全匹配。
 
-class Trie {
+class Trie { 
 
     private static class Node{
         Node[] son = new Node[26];
