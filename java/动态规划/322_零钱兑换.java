@@ -25,3 +25,27 @@ class Solution {
 
     }
 }
+
+
+//可以对比看一下从i-1转移到i的边界处理，帮助理解。
+//其实这两种状态转移方程的目的都是对二维数组进行赋值，只是循环变量的表示方式不一样了，我们需要清楚知道当下赋值的是i还是i+1，所需要的值存在哪个下标里就行了。
+class Solution {
+    public int numSquares(int n) {
+        int N = (int)Math.sqrt(n);
+        int[][] f = new int[N + 1][n + 1];
+
+        Arrays.fill(f[0], Integer.MAX_VALUE / 2);//i为0时，不合理的地方都初始化为无穷大
+        f[0][0] = 0;//这是合理的出口
+        for(int i = 1; i <= N; i++){//状态转移方程i从i-1得到
+            int squre = i * i;
+            for(int j = 0; j <= n; j++){
+                if(j < squre){
+                    f[i][j] = f[i - 1][j];
+                }else{
+                    f[i][j] = Math.min(f[i - 1][j], f[i][j - squre] + 1);
+                }
+            }
+        }
+        return f[N][n];
+    }
+}
