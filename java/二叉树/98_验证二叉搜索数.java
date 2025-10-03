@@ -51,7 +51,7 @@ class Solution {
 //重点是在遍历的时候进行边界的传递
 class Solution {
     public boolean isValidBST(TreeNode root) {
-      return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);// 注意这里的Long是class
+      return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);// 注意这里的Long是class long
     }
     private boolean isValidBST(TreeNode node, long left, long right){
         if(node == null){
