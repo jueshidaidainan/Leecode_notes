@@ -13,7 +13,7 @@ class Solution {
 
         int n = nums.length;
         for (int i = 0; i < n - 2; i++) {//我们本能的以为后面要访问i+2的位置，所以循环到n-2。但其实不是，是因为我们的代码逻辑L是i+1，R是n-1来利用双指针来移动。所以当i=n-1的时候，本质上就是最后一种情况了。（已经在leecode测试运行过的）
-            if (i > 0 && nums[i] == nums[i - 1])
+            if (i > 0 && nums[i] == nums[i - 1])//外层的去重
                 continue;
             
             //下面这两行if是优化的代码，可以不写，
