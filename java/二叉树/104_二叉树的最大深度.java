@@ -18,7 +18,7 @@ public class 104_二叉树的最大深度 {
  * }
  */
 
- // 这是优美的写法  后序遍历，每个节点的深度由左右子树中最深的那个决定，为 null，则深度为 0.
+ // 这是优美的写法  后序遍历，每个节点的深度由左右子树中最深的那个决定，若为 null，则深度为 0.
  class Solution {
     public int maxDepth(TreeNode root) {
         if(root == null) return 0;//为空，则深度为 0
