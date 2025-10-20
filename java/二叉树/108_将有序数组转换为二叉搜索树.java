@@ -25,3 +25,20 @@ class Solution {
         return new TreeNode(nums[mid], dfs(nums, left, mid), dfs(nums, mid + 1, right)); // 巧妙利用给定的构造函数结合return来写递归，一次创建根节点和左右子树的根节点，所以相等的时候只有根节点会创建
     }
 }
+
+//2025.10.20 自己写的，递归的思路很明显，将数组按照中点一直分到不可分，中点左边是左子树，中点右边是右子树。但是这种题目就涉及到如何根据区间的开闭来写递归的边界条件了，要保证不重不漏。
+//我好像倾向于写闭区间的写法，这道题就简单考虑如果左右端点重合，还是有意义的，所以写了l > r。但是我印象有种类型的题，灵神是推荐开区间写法的。
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return toBST(nums, 0, nums.length - 1);
+    }
+
+    private TreeNode toBST(int[] nums, int l, int r){
+        if(l > r) return null;
+        int mid = (r - l) / 2 + l;
+        TreeNode cur = new TreeNode(nums[mid]);
+        cur.left = toBST(nums, l, mid - 1);
+        cur.right = toBST(nums, mid + 1, r);
+        return  cur;
+    }
+}
